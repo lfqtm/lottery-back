@@ -1,0 +1,35 @@
+version: "3"
+# 服务实例
+services:
+  lottery_server:
+    image: lottery:1.0
+    container_name: lottery
+    ports:
+      - "8081:8081"
+    # 指定网络
+    networks:
+      - bridge
+    # 依赖
+    depends_on:
+      - mysql
+  # MySQL服务
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'no'
+      MYSQL_DATABASE: 'forum'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'root'
+    volumes:
+      - /app/docker/mysql/my.cnf:/etc/my.cnf
+      - /app/docker/mysql/data:/var/lib/mysql
+      - /app/docker/mysql/logs:/var/log
+    networks:
+      - bridge
+    command: --default-authentication-plugin=mysql_native_password
+networks:
+  bridge:

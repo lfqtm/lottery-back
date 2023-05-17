@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sn.ticket.mapper.LotteryDrawMapper">
+
+    <resultMap id="BaseResultMap" type="com.sn.ticket.entity.LotteryDraw">
+            <id property="drawId" column="draw_id" jdbcType="INTEGER"/>
+            <result property="drawNum" column="draw_num" jdbcType="VARCHAR"/>
+            <result property="drawTime" column="draw_time" jdbcType="VARCHAR"/>
+            <result property="drawResult" column="draw_result" jdbcType="VARCHAR"/>
+            <result property="drawPool" column="draw_pool" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        draw_id,draw_num,draw_time,
+        draw_result,draw_pool
+    </sql>
+</mapper>
